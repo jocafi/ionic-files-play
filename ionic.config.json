@@ -1,0 +1,7 @@
+{
+  "name": "ionic-files-play",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Files Play
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Select an action</ion-label>
+    <ion-select [(ngModel)]="action">
+      <ion-option *ngFor="let act of getActions()" [value]="act.key">
+        {{ act.value }}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <button ion-button (click)="goUp()">
+    Go up
+  </button>
+
+  <div *ngFor="let item of items">
+
+    <div *ngIf="item.isDirectory" (click)="goDown(item)">
+      Directory: {{item.name}}
+    </div>
+
+    <div *ngIf="item.isFile">
+      File: {{item.name}}
+    </div>
+
+  </div>
+
+</ion-content>
+

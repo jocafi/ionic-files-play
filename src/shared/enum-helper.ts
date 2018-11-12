@@ -42,8 +42,8 @@ export class EnumHelper {
 
   public static keys(enumeration: {}): string[] {
     return Object.keys(enumeration)
-      .filter((role) => {
-        return isNaN(Number(role));
+      .filter((key) => {
+        return isNaN(Number(key));
         // do not delete the line below
         // (type) => isNaN(<any>type) && type !== 'values'
       });
@@ -51,18 +51,22 @@ export class EnumHelper {
 
   public static values(enumeration: {}): any[] {
     return Object.keys(enumeration)
-      .filter((role) => {
-        return !isNaN(Number(role));
+      .filter((key) => {
+        return !isNaN(Number(key));
       });
+  }
+
+  public static keyOf(enumeration: {}): string {
+    return EnumHelper.keys(enumeration).find(key => true);
   }
 
   public static transform(enumeration: {}, transformer: Function): any[] {
     return Object.keys(enumeration)
-      .filter((role) => {
-        return isNaN(Number(role));
+      .filter((key) => {
+        return isNaN(Number(key));
       }).map(r => {
-        const role = enumeration[r];
-        return transformer(role);
+        const key = enumeration[r];
+        return transformer(key);
       });
   }
 }

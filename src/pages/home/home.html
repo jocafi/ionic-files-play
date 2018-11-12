@@ -2,19 +2,32 @@
   <ion-navbar>
     <ion-title>
       Ionic Files Play
+      <ion-icon name="star" color="gold"></ion-icon>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label stacked>Select an action</ion-label>
-    <ion-select [(ngModel)]="action">
-      <ion-option *ngFor="let act of getActions()" [value]="act.key">
-        {{ act.value }}
-      </ion-option>
-    </ion-select>
-  </ion-item>
+  <ion-grid no-margin no-padding>
+    <ion-row no-margin no-padding>
+      <ion-col col-10>
+      <ion-item>
+        <ion-label stacked>Select an action</ion-label>
+        <ion-select [(ngModel)]="action">
+          <ion-option *ngFor="let act of getActions()" [value]="act[0]">
+            {{ act[1] }}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button (click)="executeClicked()" class="btn-execute" color="dark">
+          <ion-icon name="play"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
   <button ion-button (click)="goUp()">
     Go up

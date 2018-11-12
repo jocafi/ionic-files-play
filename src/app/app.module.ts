@@ -7,6 +7,9 @@ import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {ActionProvider} from "../providers/action.provider";
+import {TransactionProvider} from "../providers/transaction.provider";
+import {IdProvider} from "../providers/id.provider";
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { HomePage } from '../pages/home/home';
     StatusBar,
     File,
     SplashScreen,
+    IdProvider,
+    ActionProvider,
+    TransactionProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

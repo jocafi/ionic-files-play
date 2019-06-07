@@ -1,38 +1,28 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
-import { File } from '@ionic-native/file';
+import { RouteReuseStrategy } from '@angular/router';
+import { File } from '@ionic-native/file/ngx';
 
-import { MyApp } from './app.component';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { HomePage } from '../pages/home/home';
-import {ActionProvider} from "../providers/action.provider";
-import {TransactionProvider} from "../providers/transaction.provider";
-import {IdProvider} from "../providers/id.provider";
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage
-  ],
+  declarations: [AppComponent, HomePage],
+  entryComponents: [],
+  imports: [CommonModule, BrowserModule, IonicModule.forRoot(), FormsModule, AppRoutingModule],
   providers: [
     StatusBar,
     File,
     SplashScreen,
-    IdProvider,
-    ActionProvider,
-    TransactionProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

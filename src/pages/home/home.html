@@ -1,37 +1,58 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <ion-title>
       Ionic Files Play
-      <ion-icon name="star" color="gold"></ion-icon>
+      <ion-icon name="star" color="gold" icon-end></ion-icon>
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-grid no-margin no-padding>
-    <ion-row no-margin no-padding>
-      <ion-col col-10>
-      <ion-item>
-        <ion-label stacked>Select an action</ion-label>
-        <ion-select [(ngModel)]="action">
-          <ion-option *ngFor="let act of getActions()" [value]="act[0]">
-            {{ act[1] }}
-          </ion-option>
-        </ion-select>
-      </ion-item>
+<ion-content style="padding: 3px 0px 8px 8px">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10">
+        <ion-item>
+          <ion-label stacked>Select an action</ion-label>
+
+          <ion-select [(ngModel)]="action">
+            <ion-select-option *ngFor="let act of actionList" [value]="act.key" >
+              {{ act.value }}
+            </ion-select-option>
+          </ion-select>
+
+        </ion-item>
       </ion-col>
-      <ion-col col-2>
-        <button ion-button (click)="executeClicked()" class="btn-execute" color="dark">
+      <ion-col size="2">
+        <button ion-button color="dark" (click)="executeClicked()" class="colbtn">
           <ion-icon name="play"></ion-icon>
         </button>
       </ion-col>
-
     </ion-row>
   </ion-grid>
 
-  <button ion-button (click)="goUp()">
-    Go up
-  </button>
+  <ion-grid>
+    <ion-row *ngIf="savedParentNativeURLs.length > 0">
+      <ion-col>
+        <button ion-button outline item-end (click)="goUp()">
+          Go up
+        </button>
+      </ion-col>
+      <ion-col align-self-end>
+        <button ion-button outline item-end (click)="goHome()">
+          Home
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div>
+          {{ actualPath }}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
   <div *ngFor="let item of items">
 
@@ -47,3 +68,6 @@
 
 </ion-content>
 
+<ion-footer style="height: 30px; vertical-align: center; padding: 8px">
+    <div style="font-size: 14px; font-weight: bold; color: darkgray">by Joca (Nov. 2018)</div>
+</ion-footer>
